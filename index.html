@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Anči svadbeni cvetići — ručno izrađeni svadbeni dodaci</title>
+<meta name="description" content="Ručno izrađeni svadbeni dodaci iz Beograda: bidermajeri, sito za mladu, kićanke i reveri na lepljenje.">
+<style>
+:root {
+  color-scheme: light;
+  --roze: #e8a0a0;          /* iz cvetova na logou — ukrasi */
+  --roze-tamna: #a65858;    /* ista nijansa, tamnija — za tekst i dugme */
+  --maslina: #9a9a4e;       /* iz okvira na logou — ukrasi */
+  --maslina-tamna: #66662e; /* ista nijansa, tamnija — za tekst */
+  --tekst: #3a3634;
+  --tekst-blag: #6b6461;
+  --linija: #ece6e3;
+  --pozadina: #ffffff;
+  --serif: "Cormorant Garamond", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --visina-zaglavlja: 68px;
+}
+html { background: #fff; scroll-behavior: smooth; scroll-padding-top: var(--visina-zaglavlja); }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--pozadina);
+  color: var(--tekst);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--roze-tamna); }
+
+/* ZAGLAVLJE */
+.zaglavlje {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid var(--linija);
+}
+.zaglavlje-red {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: var(--visina-zaglavlja);
+  padding: 0 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.znak {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+  color: var(--tekst);
+}
+.znak img { width: 44px; height: 44px; flex: none; }
+.znak span {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* hamburger — samo CSS */
+#meni {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.hamburger {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--tekst);
+  transition: transform .2s ease, opacity .2s ease;
+}
+#meni:checked + .zaglavlje-red .hamburger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+#meni:checked + .zaglavlje-red .hamburger span:nth-child(2) { opacity: 0; }
+#meni:checked + .zaglavlje-red .hamburger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+#meni:focus-visible + .zaglavlje-red .hamburger { outline: 1px solid var(--roze-tamna); outline-offset: 2px; }
+
+.zaglavlje nav {
+  display: none;
+  flex-direction: column;
+  border-top: 1px solid var(--linija);
+  padding: 8px 16px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+#meni:checked ~ nav { display: flex; }
+.zaglavlje nav a {
+  display: block;
+  padding: 12px 0;
+  text-decoration: none;
+  color: var(--tekst);
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--linija);
+}
+.zaglavlje nav a:last-child { border-bottom: 0; }
+.zaglavlje nav a:hover { color: var(--roze-tamna); }
+
+/* ODELJCI */
+main { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+section { padding: 64px 0; border-bottom: 1px solid var(--linija); }
+section:last-child { border-bottom: 0; }
+.par > section { border-bottom: 1px solid var(--linija); }
+
+.uvod { text-align: center; padding: 72px 0 64px; }
+.uvod img { width: 140px; height: auto; margin: 0 auto 28px; }
+h1, h2 { font-family: var(--serif); font-weight: 400; letter-spacing: .01em; margin: 0; }
+h1 { font-family: var(--sans); font-weight: 300; letter-spacing: .03em; font-size: clamp(2rem, 7.5vw, 3rem); line-height: 1.2; }
+.podnaslov {
+  margin: 14px 0 0;
+  color: var(--maslina-tamna);
+  font-size: .85rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.ukras { width: 48px; height: 1px; background: var(--roze); margin: 28px auto 0; }
+
+h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); line-height: 1.2; }
+.oznaka {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--maslina-tamna);
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.opis { margin: 14px 0 32px; max-width: 34em; color: var(--tekst-blag); }
+
+.galerija { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+.galerija figure { margin: 0; }
+.galerija img { width: 100%; height: auto; }
+
+/* CENE */
+.cenovnik { margin-top: 28px; display: grid; gap: 36px; max-width: 36em; }
+.grupa h3 {
+  margin: 0 0 6px;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--maslina-tamna);
+}
+.cene { list-style: none; margin: 0; padding: 0; }
+.cene li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--linija);
+}
+.cene li:first-child { border-top: 1px solid var(--linija); }
+.cene .naziv { flex: 1 1 auto; min-width: 0; font-family: var(--serif); font-size: 1.2rem; }
+.cene .naziv small { display: block; font-family: var(--sans); font-size: .85rem; color: var(--tekst-blag); line-height: 1.5; margin-top: 2px; }
+.cene .naziv small span { white-space: nowrap; }
+.cene .iznos { color: var(--roze-tamna); white-space: nowrap; }
+.napomena {
+  margin: 32px 0 0;
+  max-width: 36em;
+  padding: 14px 18px;
+  border: 1px solid var(--roze);
+  border-radius: 4px;
+  color: var(--tekst);
+}
+.napomena strong { font-weight: 500; color: var(--roze-tamna); }
+
+/* DOSTAVA */
+.dostava { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 24px; }
+.dostava li { padding-left: 20px; position: relative; }
+.dostava li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .75em;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--maslina);
+}
+.dostava strong { display: block; font-weight: 400; font-family: var(--serif); font-size: 1.2rem; }
+
+/* KONTAKT */
+.kontakt { text-align: center; }
+.dugme {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 32px;
+  min-height: 48px;
+  border: 1px solid var(--roze-tamna);
+  border-radius: 999px;
+  color: var(--roze-tamna);
+  text-decoration: none;
+  letter-spacing: .06em;
+  transition: background .2s, color .2s;
+}
+.dugme:hover, .dugme:focus-visible { background: var(--roze-tamna); color: #fff; }
+
+footer {
+  text-align: center;
+  padding: 32px 16px 40px;
+  font-size: .85rem;
+  color: var(--tekst-blag);
+  border-top: 1px solid var(--linija);
+}
+
+/* TABLET I RAČUNAR */
+@media (min-width: 720px) {
+  .zaglavlje-red, .zaglavlje nav, main { padding-left: 40px; padding-right: 40px; }
+  section { padding: 96px 0; }
+  .uvod {
+    min-height: calc(100vh - var(--visina-zaglavlja));
+    min-height: calc(100svh - var(--visina-zaglavlja));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 0;
+  }
+  .uvod img { width: 200px; }
+  .galerija.dve { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .galerija.tri { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .sito { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: center; }
+  .sito .opis { margin-bottom: 0; }
+}
+/* LAPTOP: Cene i Dostava jedno pored drugog */
+@media (min-width: 960px) {
+  .par { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; border-bottom: 1px solid var(--linija); }
+  .par > section { border-bottom: 0; }
+  .par .dostava { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hamburger span, .dugme { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="zaglavlje">
+  <input type="checkbox" id="meni" aria-label="Otvori meni">
+  <div class="zaglavlje-red">
+    <a class="znak" href="#pocetak">
+      <img src="slike/logo-anci.jpg" alt="Logo radionice Anči svadbeni cvetići" width="607" height="607">
+      <span>Anči svadbeni cvetići</span>
+    </a>
+    <label for="meni" class="hamburger" title="Meni">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+  <nav aria-label="Glavni meni">
+    <a href="#bidermajeri">Bidermajeri</a>
+    <a href="#sito">Sito za mladu</a>
+    <a href="#kicanke">Kićanke i reveri</a>
+    <a href="#cene">Cene</a>
+    <a href="#dostava">Dostava</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="uvod" id="pocetak">
+    <img src="slike/logo-anci.jpg" alt="Logo radionice Anči svadbeni cvetići" width="607" height="607">
+    <h1>Anči svadbeni cvetići</h1>
+    <p class="podnaslov">Ručno izrađeni svadbeni dodaci</p>
+    <div class="ukras" aria-hidden="true"></div>
+  </section>
+
+  <section id="bidermajeri">
+    <h2>Bidermajeri</h2>
+    <p class="opis">Ručno izrađeni bidermajeri od satenskih ruža, u boji po dogovoru.</p>
+    <div class="galerija dve">
+      <figure><img src="slike/bidermajer-bordo.jpg" alt="Bidermajer od bordo i belih satenskih ruža sa belom čipkom" width="831" height="798" loading="lazy"></figure>
+      <figure><img src="slike/bidermajer-elegantan.jpg" alt="Bidermajer od bež i krem satenskih ruža sa čipkom" width="670" height="797" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section id="sito" class="sito">
+    <div>
+      <h2>Sito za mladu</h2>
+      <p class="opis">Sito za mladu sa belim ružama i tilom.</p>
+    </div>
+    <div class="galerija jedna">
+      <figure><img src="slike/sito-za-mladu.jpg" alt="Sito za mladu ukrašeno belim ružama i tilom, na travi" width="910" height="798" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section id="kicanke">
+    <h2>Kićanke i reveri</h2>
+    <p class="opis">Kićanke i reveri, u boji i stilu po želji.</p>
+    <div class="galerija tri">
+      <figure><img src="slike/kicanka-tirkizna.jpg" alt="Kićanka od tirkizne satenske trake sa belom čipkom i zlatnim srcem" width="681" height="796" loading="lazy"></figure>
+      <figure><img src="slike/kicanka-biserna-narukvica.jpg" alt="Kićanka od bež satenske mašne sa zlatnim srcem na bisernoj narukvici" width="838" height="798" loading="lazy"></figure>
+      <figure><img src="slike/kicanka-juta.jpg" alt="Kićanka od jute sa belom čipkom, kanapom i grančicama ruzmarina" width="669" height="797" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <div class="par">
+
+  <section id="cene">
+    <h2>Cene</h2>
+    <div class="cenovnik">
+      <div class="grupa">
+        <h3>Muški modeli</h3>
+        <ul class="cene">
+          <li><span class="naziv">Reveri na lepljenje</span><span class="iznos">60 do 65 dinara</span></li>
+        </ul>
+      </div>
+      <div class="grupa">
+        <h3>Ženski modeli</h3>
+        <ul class="cene">
+          <li><span class="naziv">Kićanke<small><span>na vezivanje&nbsp;·</span> <span>na lastišu&nbsp;·</span> <span>biserne narukvice</span></small></span><span class="iznos">55 do 85 dinara</span></li>
+        </ul>
+      </div>
+      <div class="grupa">
+        <h3>Za mladu</h3>
+        <ul class="cene">
+          <li><span class="naziv">Bidermajeri i sito za mladu</span><span class="iznos">cena na upit</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="napomena"><strong>Avans 50%</strong> je obavezan prilikom porudžbine.</p>
+  </section>
+
+  <section id="dostava">
+    <h2>Dostava i preuzimanje</h2>
+    <ul class="dostava">
+      <li><strong>Slanje</strong>Post Ekspresom širom Srbije</li>
+      <li><strong>Lično preuzimanje</strong>Žarkovo — Banovo brdo, Beograd</li>
+    </ul>
+  </section>
+
+  </div>
+
+  <section class="kontakt" id="kontakt">
+    <h2>Kontakt</h2>
+    <a class="dugme" href="https://www.instagram.com/anci_svadbeni_cvetici/" target="_blank" rel="noopener">Poručite preko Instagrama</a>
+  </section>
+
+</main>
+
+<footer>Anči svadbeni cvetići · Beograd</footer>
+
+<script>
+  /* Meni se otvara i zatvara samo CSS-om. Ova dva reda samo zatvaraju meni
+     kada se klikne na neku stavku, pa ne ostaje preko stranice. */
+  document.querySelectorAll('.zaglavlje nav a').forEach(function (a) {
+    a.addEventListener('click', function () { document.getElementById('meni').checked = false; });
+  });
+</script>
+
+</body>
+</html>
