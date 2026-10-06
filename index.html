@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="only light">
 <title>Anči svadbeni cvetići — ručno izrađeni svadbeni dodaci</title>
 <meta name="description" content="Ručno izrađeni svadbeni dodaci iz Beograda: bidermajeri, sito za mladu, kićanke i reveri na lepljenje.">
 <style>
 :root {
-  color-scheme: light;
+  color-scheme: only light;
   --roze: #e8a0a0;          /* iz cvetova na logou — ukrasi */
   --roze-tamna: #a65858;    /* ista nijansa, tamnija — za tekst i dugme */
   --maslina: #9a9a4e;       /* iz okvira na logou — ukrasi */
@@ -22,7 +22,16 @@
   --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
   --visina-zaglavlja: 68px;
 }
-html { background: #fff; scroll-behavior: smooth; scroll-padding-top: var(--visina-zaglavlja); }
+/* overflow-x stoji na html, NE na body — kad stoji na body, telefon
+   napravi drugi „sloj" za skrolovanje pa klik na stavku menija ne pomeri
+   stranicu. clip radi isto što i hidden, a ne pravi taj sloj. */
+html {
+  background: #fff;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--visina-zaglavlja);
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 *, *::before, *::after { box-sizing: border-box; }
 body {
   margin: 0;
@@ -32,7 +41,7 @@ body {
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.7;
-  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: var(--roze-tamna); }
@@ -255,6 +264,21 @@ footer {
   .par > section { border-bottom: 0; }
   .par .dostava { grid-template-columns: 1fr; }
 }
+/* TAMNA TEMA TELEFONA
+   Telefon sam zatamnjuje stranice koje ne kažu da umeju i tamnu temu.
+   Zato ovde izričito kažemo da umemo — i ostavimo sve belo. Tako telefon
+   prestane da dira boje. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tekst: #3a3634;
+    --tekst-blag: #6b6461;
+    --linija: #ece6e3;
+    --pozadina: #ffffff;
+  }
+  html, body { background: #ffffff !important; color: var(--tekst) !important; }
+  .zaglavlje { background: #ffffff !important; }
+  img { filter: none !important; }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hamburger span, .dugme { transition: none; }
@@ -369,11 +393,40 @@ footer {
 <footer>Anči svadbeni cvetići · Beograd</footer>
 
 <script>
-  /* Meni se otvara i zatvara samo CSS-om. Ova dva reda samo zatvaraju meni
-     kada se klikne na neku stavku, pa ne ostaje preko stranice. */
-  document.querySelectorAll('.zaglavlje nav a').forEach(function (a) {
-    a.addEventListener('click', function () { document.getElementById('meni').checked = false; });
-  });
+  /* Meni se otvara i zatvara samo CSS-om. Ovo ispod rešava jednu sitnicu:
+     kad se klikne na stavku, meni se zatvori i stranica se u istom trenutku
+     pomera — pa telefon prekine skrolovanje i ostane na mestu. Zato prvo
+     zatvorimo meni, pa tek onda sami odskrolujemo do odeljka. */
+  (function () {
+    var kutija = document.getElementById('meni');
+    var zaglavlje = document.querySelector('.zaglavlje');
+
+    document.querySelectorAll('.zaglavlje nav a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var cilj = document.querySelector(a.getAttribute('href'));
+        if (!cilj) return;
+
+        e.preventDefault();
+        kutija.checked = false;
+
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            var visinaZaglavlja = zaglavlje ? zaglavlje.offsetHeight : 68;
+            var vrh = cilj.getBoundingClientRect().top + window.pageYOffset - visinaZaglavlja;
+            if (vrh < 0) { vrh = 0; }
+            try {
+              window.scrollTo({ top: vrh, behavior: 'smooth' });
+            } catch (greska) {
+              window.scrollTo(0, vrh);
+            }
+            if (history.replaceState) {
+              history.replaceState(null, '', a.getAttribute('href'));
+            }
+          });
+        });
+      });
+    });
+  })();
 </script>
 
 </body>
